@@ -1,0 +1,211 @@
+@import "tailwindcss";
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+/* Custom Dashboard Styles - Glassmorphism Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-white: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Matching the Auth.css Gradient */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-white);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Dashboard Grid & Cards */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.card p {
+  margin: 10px 0 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Specific Card Colors */
+.income p { color: #81c784; } /* Soft Green */
+.spend p { color: #ff8a80; }  /* Soft Red */
+.remaining { background: rgba(255, 255, 255, 0.25); }
+
+/* Form Container */
+.form-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+}
+
+.form-container h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.form-group input, .form-group select {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form-group select option {
+  background: #764ba2; /* Match theme for dropdown list */
+  color: white;
+}
+
+.form-group button {
+  padding: 14px 30px;
+  border-radius: 10px;
+  border: none;
+  background: #ffffff;
+  color: #764ba2;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-group button:hover {
+  background: #e0e0e0;
+  transform: scale(1.05);
+}
+
+/* Chart Section */
+.chart-section {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.chart-section h3 {
+  margin-bottom: 30px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.editable-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.editable-input-wrapper span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #81c784;
+}
+
+.income input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+  color: #81c784;
+  font-size: 2rem;
+  font-weight: 700;
+  width: 150px;
+  text-align: left;
+  outline: none;
+}
+
+.income input:focus {
+  border-bottom: 2px solid #81c784;
+}
+
+/* Hide arrows in number input */
+.income input::-webkit-outer-spin-button,
+.income input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.save-income-btn {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: white !important;
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.save-income-btn:hover {
+  background: #ffffff !important;
+  color: #764ba2 !important;
+}
