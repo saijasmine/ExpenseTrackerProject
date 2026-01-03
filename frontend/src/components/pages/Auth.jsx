@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -25,6 +25,7 @@ const Auth = () => {
     setLoading(true);
     setMessage('');
 
+    const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
 
     try {
@@ -123,3 +124,4 @@ const Auth = () => {
 
 
 export default Auth;
+
