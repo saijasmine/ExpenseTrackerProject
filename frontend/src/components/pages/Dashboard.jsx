@@ -82,7 +82,7 @@
 // export default Dashboard;
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 axios.defaults.withCredentials = true;
@@ -96,7 +96,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://localhost:8080/api/expenses');
+        const res = await axios.get('/api/expenses');
         const rawData = Array.isArray(res.data) ? res.data : [];
 
         const now = new Date();
