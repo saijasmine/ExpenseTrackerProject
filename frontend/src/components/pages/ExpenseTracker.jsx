@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from './axiosConfig';
+import axios from '../../../axiosConfig';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -239,3 +239,4 @@ const ExpenseTracker = () => {
 };
 
 export default ExpenseTracker;
+
