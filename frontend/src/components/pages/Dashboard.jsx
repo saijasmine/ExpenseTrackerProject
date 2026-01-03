@@ -82,7 +82,7 @@
 // export default Dashboard;
 
 import React, { useState, useEffect } from 'react';
-import axios from './axiosConfig';
+import axios from '../../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 axios.defaults.withCredentials = true;
@@ -207,3 +207,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
