@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
-
-
-
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -38,7 +35,6 @@ const Auth = () => {
         credentials: 'include',
       });
 
-      // Handle Validation Errors (400 Bad Request)
       if (response.status === 400) {
         setMessage("Password too weak! Use 8+ chars, uppercase, numbers & symbols.");
         setLoading(false);
@@ -58,16 +54,16 @@ const Auth = () => {
           setTimeout(() => {
             setIsLogin(true);
             setLoading(false);
-            setFormData({ email: '', password: '' }); // Clear form
+            setFormData({ email: '', password: '' });
           }, 2000);
         }
       } else {
-        // Handle other errors (401 Unauthorized, etc.)
         setMessage(data || "Invalid credentials. Please try again.");
         setLoading(false);
       }
     } catch (err) {
-      setMessage("Cannot connect to server. Is Spring Boot running on port 8080?");
+      console.error("Connection Detailed Error:", err);
+      setMessage("Connection failed. Please check your internet or server status.");
       setLoading(false);
     }
   };
@@ -76,10 +72,6 @@ const Auth = () => {
     <div className="auth-container">
       <div className="auth-card">
         <h2>{isLogin ? 'Welcome Back' : 'Mindful Spends'}</h2>
-        <p style={{ fontSize: '14px', marginBottom: '20px', color: 'rgba(255,255,255,0.8)' }}>
-          {isLogin ? 'Enter your details to access your tracker' : 'Register to start tracking your spends'}
-        </p>
-
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input 
@@ -91,7 +83,6 @@ const Auth = () => {
               required 
             />
           </div>
-
           <div className="input-group">
             <input 
               type="password" 
@@ -102,16 +93,13 @@ const Auth = () => {
               required 
             />
           </div>
-
           <button type="submit" disabled={loading}>
             {loading ? 'Processing...' : (isLogin ? 'Login' : 'Sign Up')}
           </button>
         </form>
-        
         <p className="toggle-text" onClick={() => { setIsLogin(!isLogin); setMessage(''); }}>
           {isLogin ? "Don't have an account? Sign Up" : "Already have an account? Login"}
         </p>
-        
         {message && (
           <div className={`message-box ${message.includes('Successful') || message.includes('Created') ? 'success' : 'error'}`}>
             {message}
@@ -122,6 +110,4 @@ const Auth = () => {
   );
 };
 
-
 export default Auth;
-
