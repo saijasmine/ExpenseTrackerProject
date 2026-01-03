@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
+
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -25,7 +28,7 @@ const Auth = () => {
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
 
     try {
-      const response = await fetch(`http://localhost:8080${endpoint}`, {
+      const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json' 
@@ -117,5 +120,6 @@ const Auth = () => {
     </div>
   );
 };
+
 
 export default Auth;
