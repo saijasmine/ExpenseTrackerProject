@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from './axiosConfig';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -26,7 +26,7 @@ const ExpenseTracker = () => {
   const fetchTransactions = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:8080/api/expenses');
+      const res = await axios.get('/api/expenses');
       const data = res.data;
 
       const filtered = data.filter(t => {
@@ -72,7 +72,7 @@ const ExpenseTracker = () => {
     }
 
     try {
-      await axios.post('http://localhost:8080/api/expenses', {
+      await axios.post('/api/expenses', {
         amount: amountNum,
         description: formData.description ? `${formData.category}: ${formData.description}` : formData.category,
         type: 'EXPENSE',
@@ -87,7 +87,7 @@ const ExpenseTracker = () => {
 
   const handleUpdateIncome = async () => {
     try {
-      await axios.post('http://localhost:8080/api/expenses', {
+      await axios.post('/api/expenses', {
         amount: 0,
         description: 'INCOME_UPDATE',
         type: 'SETTING',
@@ -103,7 +103,7 @@ const ExpenseTracker = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Delete this transaction?")) {
       try {
-        await axios.delete(`http://localhost:8080/api/expenses/${id}`);
+        await axios.delete('/api/expenses/${id}');
         fetchTransactions();
       } catch (err) {
         alert("Error deleting item.");
@@ -113,7 +113,7 @@ const ExpenseTracker = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8080/api/auth/logout');
+      await axios.post('/api/auth/logout');
       navigate('/auth'); 
     } catch (err) {
       console.error("Logout failed");
